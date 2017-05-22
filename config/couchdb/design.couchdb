@@ -1,0 +1,13 @@
+{
+  "_id": "_design/lists",
+  "_rev": "2-30e0e697b05f6f16c05124e5875e5f9d",
+  "language": "javascript",
+  "views": {
+    "incoming": {
+      "map": "function(doc) {\n  if(doc.type=='in') emit(null, doc);\n}"
+    },
+    "outgoing": {
+      "map": "function(doc) {\n  if(doc.type=='out') emit(null, doc);\n}"
+    }
+  }
+}
