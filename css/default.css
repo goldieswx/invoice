@@ -1,0 +1,380 @@
+
+
+
+body {
+	font-size: 13px; 	
+}
+
+.right .dropdown-menu {
+	left: auto;
+    right: 0;
+    clear: both;
+}
+
+h3{
+
+	margin-left: 40px;
+	font-size: 20px;
+	margin-bottom: 0;
+}
+
+h5.hope {
+    background: #aaa;
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+    height: 36px;
+    margin-bottom: 0;
+    width: 100%;
+    text-shadow: 1px 1px #888888;
+    margin-top:	0;
+}
+
+h5.hope > div {
+    color: #fff;
+    font-weight: normal;
+    padding: 8px;
+}
+h5.hope div.export-btn {
+    padding: 4px;
+    text-shadow: none;
+}
+
+
+table.hope > thead > tr {
+	background: #efefef;
+	color: #555;
+}
+
+table.hope {
+	margin-bottom: 0;
+	border-bottom: solid 1px #ddd;
+}
+
+div.footer.hope {
+	background: #efefef;
+	border-top: 2px solid #ddd;
+}
+
+div.footer.hope > div {
+	padding: 8px;
+}
+
+div.footer.hope .pagination {
+	margin: 0;
+}
+
+form.refine-search > div {
+	/* height: 50px; */
+	background: #efefef;
+	border-radius: 4px;
+	padding: 8px;
+    min-height: 85px;
+}
+
+form.refine-search {
+	margin: 0;
+}
+
+div.right {
+	float: right;
+}
+div.left {
+	float: left;
+	overflow: hidden;
+}
+
+
+.btn-small .caret {
+    margin-top: 8px;
+}
+
+.refine-search .choose-criteria {
+	width: 85%;
+	text-align: left
+}
+
+
+.show-ab {
+	margin-top: 6px;
+	font-weight: bold;
+	font-size: 15px;
+	text-shadow: #fff 2px 2px;
+}
+
+.tab-content {
+	padding-left: 10px;
+	padding-right: 10px;
+}
+
+dl.dl-horizontal {
+
+	margin-bottom: 5px;
+	margin-top: 5px;
+}
+.nav-tabs .active a,.nav-tabs .active a:hover {
+	background-color: #efefef;
+	border-color: #efefef;
+}
+
+.table td.subtotal-label {
+	text-align: right;
+	font-weight: bold;
+}
+
+.table td.subtotal-amount {
+	text-align: right;
+}
+
+.input-prepend  .add-on.bold {
+	font-weight: bold;
+}
+
+.hope.table td select {
+	margin-bottom: 0;
+}
+
+.hope .dl-horizontal dt {
+	text-align: left;
+    width: 200px;
+    margin-top: 3px;
+}
+
+.hope .span6 .dl-horizontal dt, 
+.hope .span5 .dl-horizontal dt
+{
+	width: 170px;
+}
+
+.hope .span4 .dl-horizontal dt {
+	width: 150px;	
+}
+
+.hope .dl-horizontal dd {
+	margin-left: 210px;
+}
+
+.hope .span6 .dl-horizontal dd, 
+.hope .span5 .dl-horizontal dd
+{
+	margin-left: 180px;
+}
+
+.hope .span4 .dl-horizontal dd {
+	margin-left: 160px;
+}
+
+.hope fieldset {
+	/* overflow:hidden; */
+	display: inline-block;
+	width: 100%;
+}
+
+.hope fieldset legend {
+	border-bottom: solid 2px #d5e5f0;
+}
+
+.hope .legend-edit {
+	float: right;
+	overflow: hidden;
+}
+
+.hope .legend-edit button {
+	margin-right: 4px;
+}
+
+.popover {
+	margin-left: -20px;
+}
+
+.hope .pagination {
+
+float: right;
+padding-right: 10px;
+padding: 0;
+padding-top: 3px;
+padding-right: 4px;
+margin: 0;
+
+}
+
+
+.container-fluid, .container  {
+			margin-right: 20px;
+		}
+		.row-fluid, .row {
+			/*padding-left: 10px; */
+		}
+		.row-fluid > .accordion, .row > .accordion  {
+			margin-left: -10px;
+			margin-top: 10px;
+			margin-bottom: 0;
+		}
+		a.accordion-heading {
+			color: #666;
+		}
+
+		a.accordion-toggle {
+			background:	#efefef;
+		}
+		.row-fluid > .form-actions, .row > .form-actions {
+			/* margin-left: -10px; */
+		}
+		.accordion-body {
+			overflow: hidden;
+		}
+		.accordion-group {
+			margin-bottom: 5px;
+		}
+		.row-fluid > .form-actions > *, .row > .form-actions > *, {
+			float: right;
+			margin-left: 10px;
+		}
+
+		.form-inline > * {
+			margin-right: 10px;
+		}
+		.form-actions .dropdown-menu {
+			right: 0;
+			left: auto;
+		}
+		.row-fluid .input-prepend, .row-fluid .input-append, .row-fluid select, .row-fluid input,
+		.row .input-prepend, .row .input-append, .row select, .row input
+		 {
+			margin-bottom: 0;
+		}
+
+
+.float-left, .row-fluid > .form-actions > .float-left,
+.row > .form-actions > .float-left
+ {
+	float: left;
+	margin-left: 0;
+}
+
+
+.dl-horizontal dt , .dl-horizontal dd {
+
+	margin-bottom: 4px;
+}
+
+#execution-countries h5.hope > div.pagination {
+	
+} 
+#execution-countries h5.hope > div {
+	float: left;
+}
+
+.form-actions {
+	margin-bottom: 0;
+}
+
+.container-fluid, .container {
+	margin-left: 40px;
+	margin-right: 30px;
+	border-left: solid 1px #ddd;
+	box-shadow: -1px 0px 2px 0 #eee;
+	margin-top: 10px;
+}
+
+.accordion-group {
+background: -moz-linear-gradient(top,  rgba(239,239,239,0) 0%, rgba(242,242,242,0.74) 100%); /* FF3.6+ */
+background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(239,239,239,0)), color-stop(100%,rgba(242,242,242,0.74))); /* Chrome,Safari4+ */
+background: -webkit-linear-gradient(top,  rgba(239,239,239,0) 0%,rgba(242,242,242,0.74) 100%); /* Chrome10+,Safari5.1+ */
+background: -o-linear-gradient(top,  rgba(239,239,239,0) 0%,rgba(242,242,242,0.74) 100%); /* Opera 11.10+ */
+background: -ms-linear-gradient(top,  rgba(239,239,239,0) 0%,rgba(242,242,242,0.74) 100%); /* IE10+ */
+background: linear-gradient(to bottom,  rgba(239,239,239,0) 0%,rgba(242,242,242,0.74) 100%); /* W3C */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00e5e5e5', endColorstr='#bdf2f2f2',GradientType=0 ); /* IE6-9 */
+border-left: solid 1px #ddd;
+box-shadow: 0 0 5px #eee;
+
+}
+
+.navbar {
+
+	margin-top: 0px;
+	border-top: solid 1px #bbb;
+	margin-bottom: 0;
+
+}
+
+.navbar-inner {
+	border-radius: 0;
+	-webkit-border-radius: 0;
+	-moz-borer-radius: 0;
+}
+
+.subnav {
+	padding-left: 40px;
+margin-top: 0;
+padding-top: 5px;
+background: #efefef;
+padding-bottom: 5px;
+}
+
+.subnav.subnav-fixed {
+	position: fixed;
+	top: 0px;
+	z-index: 8000;
+	width: 100%;
+	background-color: rgba(210,210,210,.8);
+}
+
+.subnav.subnav-fixed * {
+	opacity: 1;
+}
+
+#ecas {
+
+background: white;
+padding-left: 50px;
+padding-right: 50px;
+padding-bottom: 30px;
+width: 1000px;
+z-index: 5000000;
+border: none;
+box-shadow: 0 3px 6px 0 #aaa;
+margin-right: auto;
+margin-left: auto;
+
+}
+
+#ecas iframe {
+
+width: 100%;
+height: 700px;
+border: none;
+background: white;
+
+}
+
+/* Corrects an ugly bootstrap bug with negative margins and inlines */
+
+.radio.inline, .checkbox.inline { margin-right: 5px; margin-left: 0;  padding-left: 0; }
+.radio input[type="radio"], .checkbox input[type="checkbox"]  { margin-right: 5px; margin-left:  0; }
+.radio.inline + .radio.inline, .checkbox.inline + .checkbox.inline { margin-left: 0px;} 
+
+/**/
+
+.radio, .checkbox {
+	min-height: 25px;
+}
+
+.row-fluid > fieldset > dl,
+.row > fieldset > dl,
+ {
+margin-left: 10px;
+}
+
+.accordion {
+margin-top: 10px;
+}
+
+.tab-pane .form-actions {
+
+	margin-left: -10px;
+}
+
+
+.table td.number-align {
+	text-align: right;
+}

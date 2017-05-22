@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html ng-app="invoice">
+	<head>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta http-equiv="Content-Type" name="content-type" content="text/html; charset=utf-8">
+		<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+		<link rel="stylesheet" type="text/css" href="css/bootstrap-datepicker.css">
+		<link rel="stylesheet" type="text/css" href="css/default.css">
+
+		<script src="js/lib/lodash.js"></script>
+		<script src="js/lib/angular.js"></script>
+		<script src="js/lib/angular-ui.bootstrap.js"></script>
+
+	</head>
+<body>
+
+
+		<div class="container-fluid hope" ng-controller="InvoiceCtrl">
+			<div class="row-fluid">
+					<div class="span12">
+						<h2>Invoice helper Application <small>fx-1.net</small></h2>
+						<div ng-controller="TabsCtrl">
+						<tabs>
+							<pane heading="Gérer les factures <span class='label label-info'>in</span>  /  <span class='label'>out</span>">
+								<div class="row-fluid">
+								<div class="span12">
+								<fieldset>
+								<dl class="dl-horizontal">
+									<dt>Type</dt>
+											<dd>
+												<label class="radio inline">
+												  <input type="radio" value="in" ng-model="entry.type"> Entrée
+												</label>
+												<label class="radio inline">
+												  <input type="radio" value="out" ng-model="entry.type"> Sortie
+												</label>
+											</dd>
+								</dl>
+								</fieldset>
+								</div>
+								</div>
+
+								<div class="row-fluid">
+								<div class="span6">
+								<fieldset>
+									<legend>Caractéristiques</legend>
+
+									<dl class="dl-horizontal">
+										<dt ng-show="entry.type=='in'">Nom/Dénomination</dt>
+										<dt ng-show="entry.type=='out'">Facturé à</dt>
+											<dd><input type="text" ng-model="entry.name"></dd>
+
+										<dt ng-show="entry.type=='out'">N.TVA Client</dt>
+										<dt ng-show="entry.type=='in'">N.TVA Fournisseur</dt>
+											<dd><input type="text" ng-model="entry.vatNumber"></dd>
+
+										<dt>Numéro de Document</dt>
+											<dd>
+												<input type="text" class="input-medium" ng-model="entry.documentNumber">
+											</dd>										
+										<dt>Date</dt>
+											<dd>
+												<input type="text" class="input-medium" ng-model="entry.date" datepicker placeholder="dd/mm/yyyy">
+											</dd>
+										<dt ng-show="entry.type=='in'">Type de frais</dt>
+											<dd ng-show="entry.type=='in'">
+												<select ng-model="entry.expenseType" ng-options="item.id as item.value for item in interface.expenseTypes">
+													<option value="">- Please select -</option>
+												</select>
+											</dd>											
+										<dt >Payé</dt>
+											<dd>
+												<label class="checkbox inline">
+												  	<input type="checkbox" value="1" ng-model="entry.paid"> 
+												</label>
+											</dd>	
+										<dt>Date de Paiement</dt>
+											<dd>
+												<input type="text" class="input-medium" ng-model="entry.paymentDate" datepicker placeholder="dd/mm/yyyy">
+											</dd>										
+
+										
+
+									</dl>
+								</fieldset>
+							</div>
+							<div class="span6">
+								<fieldset>
+									<legend>Montants, Tva et Déductibilité</legend>
+									<dl class="dl-horizontal">
+										<dt>Montant TVAC</dt>
+											<dd>
+												<div class="input-append">
+												  <input number-formatted type="text" class="input-medium" ng-model="entry.totalAmount" placeholder="e.g: 1200">
+												  <span class="add-on">€</span>
+												</div>
+											</dd>
+										<dt>Montant TVA</dt>
+											<dd>
+												<div class="input-append">
+													<input type="text" class="input-medium" ng-model="entry.vatAmount" placeholder="e.g: 200" number-formatted>
+													<span class="add-on">€</span>
+												</div>
+											</dd>
+										<dt>Taux TVA</dt>
+											<dd>
+												<div class="input-append">
+													<input type="text" class="input-small" ng-model="entry.vatPercentage" placeholder="e.g: 20"  number-formatted>
+													<span class="add-on">%</span>
+												</div>												
+											</dd>
+										<dt ng-show="entry.type=='in'">Déduction TVA</dt>
+											<dd ng-show="entry.type=='in'">
+												<div class="input-append">
+													<input type="text" class="input-small" ng-model="entry.vatDeductibility" placeholder="e.g: 50"  number-formatted>
+												<span class="add-on">%</span>
+												</div>
+											</dd>
+										<dt ng-show="entry.type=='in'">Déduction Impots</dt>
+											<dd ng-show="entry.type=='in'">
+												<div class="input-append">
+													<input type="text" class="input-small" ng-model="entry.taxDeductibility" placeholder="e.g: 65"  number-formatted>
+												<span class="add-on">%</span>
+												</div>
+											</dd>
+									</dl>
+								</fieldset>
+
+								 
+							</div>
+						</div>
+						<div class="row-fluid">
+								<div class="span12">
+									<fieldset>
+									<legend>Commentaires et remarques</legend>
+									<dl class="dl-horizontal">
+										<dt>Commentaire</dt>
+											<dd>
+												<textarea class="field span12" style="height: 80px;" ng-model="entry.comment"></textarea>
+											</dd>
+									</dl>
+									<dl class="dl-horizontal">
+										<dt>Image(s)</dt>
+											<dd>
+												<input type="text" class="field span12" ng-model="entry.imageLink">
+											</dd>
+									</dl>
+									</fieldset>
+								</div>
+						</div>
+						<div class="row-fluid">
+								<div class="form-actions">
+						  				<button type="button" class="btn float-left">Cancel</button>
+						  				<button type="button" class="btn btn-inversed" ng-click="duplicate(entry)">
+						  					Duplicate
+						  				</button>
+						  				<button type="button" class="btn btn-primary" ng-click="addInvoice(entry)">
+						  					Save
+						  				</button>
+								</div>
+						</div>	
+
+							</pane>
+							<pane heading="Factures entrée <span class='label label-info'>in</span>">
+								<div class="row-fluid">
+									<fieldset>
+										<legend>Filter criteria</legend>
+											<dl class="dl-horizontal">
+												<dt>Type de frais</dt>
+												<dd>
+													<label class="checkbox inline" ng-repeat="item in interface.expenseTypes">
+													  <input type="checkbox" value="1" ng-model="incoming.filter.expenseTypes[item.id]">{{item.value}}
+													</label>
+												</dd>
+											</dl>
+											<dl class="dl-horizontal">
+										 		 <dt>Trimester</dt>
+										 		 <dd>
+													  <select ng-model="incoming.filter.trimester" ng-options="item.id as item.value for item in interface.trimesters">
+														<option value="">- Any -</option>
+													  </select>
+										 		 </dd>
+												</dl>
+									</fieldset>
+								</div>
+
+								<div class="row-fluid">
+									<h5 class="hope"><div>Incoming invoices</div></h5>
+									<table class="hope table table-striped">
+									 		<thead>
+									 			<tr>
+									 				<th>Delete</th>
+									 				<th>Fournisseur</th>
+									 				<th>Numéro</th>
+									 				<th>Date</th>
+									 				<th>Frais</th>
+									 				<th>Total</th>
+									 				<th>TVA</th>
+									 				<th>Déduc. TVA</th>
+									 				<th>TVA Calculée</th>
+									 				<th>Taux TVA</th>
+									 			</tr>
+									 		</thead>
+									 		<tbody >
+												<tr ng-repeat="item in incomingInvoices | filter:incomingFilter | orderBy:['value.name','value.documentNumber'] | pages:incomingPager" ng-click="editEntry(item)">
+													<td><a class="btn" ng-click="deleteRecord(item)"><i class="icon-trash"></i></a></td>
+													<td>{{item.value.name}}</td>
+													<td>{{item.value.documentNumber}}</td>
+													<td>{{item.value.date}}</td>
+													<td>{{item.value.expenseType}}</td>
+													<td>{{item.value.totalAmount }}</td>
+													<td>{{item.value.vatAmount }}</td>
+													<td>{{item.value.vatDeductibility }}</td>
+													<td>{{item.processed.vatAmount }}</td>
+													<td>{{item.value.vatPercentage }}</td>
+												</tr>
+											</tboby>
+									</table>
+									    <pagination 
+											boundary-links="true" 
+											num-pages="incomingPager.numPages" 
+											current-page="incomingPager.currentPage" 
+											max-size="5">
+									    </pagination>
+								</div>
+
+								<div class="row-fluid">
+										<table class="hope table table-striped">
+											<tr><td class="number-align"><strong>VAT</strong></td><td class="number-align">{{incoming.totals.vatAmount | currency}}</td></tr>
+											<tr><td class="number-align"><strong>VAT Deductible</strong></td><td class="number-align">{{incoming.totals.vatDeductibility | currency}}</td></tr>
+											<tr><td class="number-align">Total</td><td class="number-align">{{incoming.totals.totalAmount | currency}}</td></tr>
+										</table>
+								</div>
+
+								<div class="row-fluid">
+								<div class="form-actions">
+						  				<button type="button" class="btn float-left">Cancel</button>
+						  				<button type="button" class="btn btn-primary" ng-click="loadIncomingInvoices()">
+						  					<i class="icon-search icon-white"></i>
+						  				</button>
+								</div>
+								</div>	
+							</pane>
+							<pane heading="Factures sortie <span class='label'>out</span>">
+
+								<div class="row-fluid">
+									 	<fieldset>
+											<legend>Filters</legend>
+												<dl class="dl-horizontal">
+											 		 <dt>Trimester</dt>
+											 		 <dd>
+														  <select ng-model="outgoing.filter.trimester" ng-options="item.id as item.value for item in  interface.trimesters">
+															<option value="">- Any -</option>
+														  </select>
+											 		 </dd>
+												</dl>
+										</fieldset>
+								</div>
+
+								<div class="row-fluid">
+									<h5 class="hope"><div>Incoming invoices</div></h5>
+									<table class="hope table table-striped">
+									 		<thead>
+									 			<tr>
+									 				<th>Delete</th>
+									 				<th>Client</th>
+									 				<th>Numéro</th>
+									 				<th>Date</th>
+									 				<th>Payé</th>
+									 				<th>Total</th>
+									 			</tr>
+									 		</thead>
+									 		<tbody >
+												<tr ng-repeat="item in outgoingInvoices | filter:outgoingFilter | orderBy:['value.name','value.documentNumber'] |   pages:outgoingPager"
+													ng-click="editEntry(item)">
+													<td><a class="btn" ng-click="deleteRecord(item)"><i class="icon-trash"></i></a></td>
+													<td>{{item.value.name}}</td>
+													<td>{{item.value.documentNumber}}</td>
+													<td>{{item.value.date}}</td>
+													<td>{{item.value.paid}}</td>
+													<td>{{item.value.totalAmount}}</td>
+												</tr>
+											</tboby>
+									</table>
+								</div>
+
+								<div class="row-fluid"  onscroll-fixed-bottom>
+										<div class="span6">
+											<div class="display-results">
+												 <strong>Showing results {{outgoingPager.from}} / {{outgoingPager.to}} of {{outgoingPager.numItems}}</strong>.
+								            </div>
+										</div>
+										
+										<div class="span6">
+										<div pagination 
+										        boundary-links="true" 
+										        num-pages="outgoingPager.numPages" 
+										        current-page="outgoingPager.currentPage" 
+										        max-size="5">
+								   		</div>
+								   		</div>
+								</div>
+
+								<div class="row-fluid">
+										<table class="hope table table-striped">
+											<tr><td class="number-align"><strong>Total Net</strong></td><td class="number-align">{{outgoing.totalNet | currency}}</td></tr>
+											<tr><td class="number-align"><strong>Total VAT</strong></td><td class="number-align">{{outgoing.totalVat | currency}}</td></tr>
+											<tr><td class="number-align">Total</td><td class="number-align">{{outgoing.total | currency}}</td></tr>
+										</table>
+								</div>
+
+								<div class="row-fluid">
+								<div class="form-actions">
+						  				<button type="button" class="btn float-left">Cancel</button>
+						  				<button type="button" class="btn btn-primary" ng-click="loadOutgoingInvoices()">
+						  					<i class="icon-search icon-white"></i>
+						  				</button>
+								</div>
+							</div>	
+							</pane>
+							<pane heading="Rapport TVA Trmestriel">
+
+								<div class="row-fluid">
+									<fieldset>
+											<dl class="dl-horizontal">
+										 		 <dt>Trimester</dt>
+										 		 <dd>
+													  <select ng-model="vatReport.filter.trimester" ng-options="item.id as item.value for item in interface.trimesters"></select>
+										 		 </dd>
+												</dl>
+									</fieldset>
+
+									<div class="row-fluid">
+										<table class="hope table table-striped">
+											<tr><td class="number-align"><strong>Goods and services</strong></td><td class="number-align">{{vatReport.goodsAndServices | currency}}</td></tr>
+											<tr><td class="number-align"><strong>VAT Deductible</strong></td><td class="number-align">{{vatReport.incoming.totals.vatDeductibility | currency }}</td></tr>
+											<tr><td class="number-align">Net operations 21% Out</td><td class="number-align">{{vatReport.outgoing.totalNet | currency }}</td></tr>
+											<tr><td class="number-align">VAT 21% Due</td><td class="number-align">{{vatReport.outgoing.totalVat | currency }}</td></tr>
+											<tr><td class="number-align">Due to state</td><td class="number-align">{{vatReport.dueVATToState | currency }}</td></tr>
+											<tr><td class="number-align">Next trimester acompte (x2)</td><td class="number-align">{{vatReport.nextTrimesterAccount | currency }}</td></tr>
+											<tr><td class="number-align">Last trimester acompte for this trimester</td><td class="number-align">{{vatReport.lastAccount | currency }}</td></tr>
+
+										</table>
+									</div>
+
+								</div>
+
+							</pane>
+							<pane heading="Accomptes TVA"></pane>
+							<pane heading="Rapport Impots"></pane>
+
+
+						</tabs>
+						</div>
+					</div>
+			</div>
+		</div>
+
+		<script src="js/lib/jquery.js"></script>
+		<script src="js/lib/bootstrap.min.js"></script>
+		<script src="js/lib/bootstrap-datepicker.js"></script>
+
+		<script src="js/invoice.js"></script>
+		<script src="js/invoice-controllers.js"></script>
+</body>
+
+</html>
